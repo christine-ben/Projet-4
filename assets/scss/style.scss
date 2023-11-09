@@ -98,6 +98,8 @@ font-family: 'Roboto', sans-serif;
     top: 0;
     height: 100%;
     width: 100%;
+    /*le z-index détermine l'ordre des différentes couches que formeront les éléments. Généralement,
+   un élément couvrira un autre élément si sa valeur de z-index est supérieure à celle du deuxième élément.*/
     z-index: 100;
     animation: loadscreen 1s 4s forwards;
 }
@@ -106,10 +108,11 @@ font-family: 'Roboto', sans-serif;
     position: absolute;
     top: 50%;
     left: 50%;
-    /*La translatepropriété vous permet de changer la position des éléments.*/
+   /*translate() permet de déplacer un élément sur le plan représenté par le document.*/
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: space-around;
+    /*configuratin des dimensions pour les barre*/
     width: 20vh;
     height: 15vh;
     
@@ -497,7 +500,7 @@ i.fa-solid.location_icon {
 
 /* --fin code FOOTER -----------------------------------------------------*/
 
-/* PAGE principal*/ 
+/*fin code PAGE principal*/ 
 
 
 /* /*code des page menu------------------------------------------ */ 

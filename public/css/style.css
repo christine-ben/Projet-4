@@ -1,4 +1,12 @@
 @charset "UTF-8";
+/*definission : Une variable Sass est un conteneur pour une valeur. L’idée est de lier un nom à une valeur 
+puis d’utiliser ensuite ce nom à la place de la valeur dans le code. 
+Le nom utilisé sera ensuite converti automatiquement en la valeur à laquelle il est lié.
+ Cela permet une plus grande clarté dans le code et une bien meilleure maintenabilité 
+ puisque si on souhaite changer la valeur en question il suffit de la faire une fois à l’endroit où on l’a lié au nom.
+Les variables Sass sont très simple d’utilisation : 
+il suffit d’utiliser un signe $ (dollar) suivi d’un nom pour déclarer (c’est-à-dire créer) une variable
+ et d’affecter une valeur à ce nom en séparant le nom de la valeur par le signe : (deux-points).*/
 /*variables*****/
 /*Chaque itération à travers la boucle produira un nouveau sélecteur, 
 avec le numéro d'index de l'itération utilisé dans son nom, ainsi que pour multiplier le 
@@ -6,11 +14,16 @@ avec le numéro d'index de l'itération utilisé dans son nom, ainsi que pour mu
  $anim-delay  est réglé sur la durée de l'animation divisée par le nombre de barres.*/
 /* PAGE */
 /* KEYFRAMES */
+/* KEYFRAMES (l'ecran de chargement): Si une liste d'étapes ne spécifie pas le début (0%/from) ou la fin (100%/to) 
+d'une animation, le navigateur va utiliser les styles de l'élement définis par ailleurs.
+Seules les propriétés qui sont définies sur les étapes de début (0%) et de fin (100%) seront animées.*/
 @keyframes loadscreen {
+  /*from :Indique le point de départ de l'animation (correspond à un avancement de 0%).*/
   from {
     opacity: 1;
     transform: rotate(0deg);
   }
+  /*to :Indique la fin de l'animation (correspond à un avancement de 100%).*/
   to {
     opacity: 0;
     visibility: hidden;
@@ -22,6 +35,8 @@ barres dans le temps, en commençant à 0 % et en terminant à 100 % :*/
 @keyframes bars {
   0% {
     transform: scaleY(0.5);
+    /**opacity :définit la transparence d'un élément. Autrement dit, elle permet de définir 
+      le degré de visibilité de l'arrière-plan sur lequel est placé l'élément.*/
     opacity: 0.7;
   }
   100% {
@@ -41,6 +56,10 @@ barres dans le temps, en commençant à 0 % et en terminant à 100 % :*/
   }
 }
 /* KEYFRAMES */
+/*on remarque que les sélecteurs a,et li sont imbriqués à l'intérieur du body. 
+C'est un excellent moyen d'organiser notre CSS et de le rendre plus  lisible.
+*Sass: nous permettra d'imbriquer nos sélecteurs CSS d'une manière qui suit la même 
+hiérarchie visuelle que notre HTML */
 body {
   font-family: "Roboto", sans-serif;
   margin: 0px auto;
@@ -54,6 +73,7 @@ body li {
   list-style-type: none;
 }
 
+/* <input> de type checkbox sont affichés sous la forme de boîtes à cocher qui sont cochées lorsqu'elles sont activées.*/
 input[type=checkbox] {
   display: none;
 }
@@ -71,13 +91,15 @@ input[type=checkbox] {
   margin: auto;
 }
 
-/* LOADER */
+/* -------------LOADER------------------------------------ */
 .loader {
   background: rgba(255, 255, 255, 0.85);
   position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
+  /*le z-index détermine l'ordre des différentes couches que formeront les éléments. Généralement,
+  un élément couvrira un autre élément si sa valeur de z-index est supérieure à celle du deuxième élément.*/
   z-index: 100;
   animation: loadscreen 1s 4s forwards;
 }
@@ -86,9 +108,11 @@ input[type=checkbox] {
   position: absolute;
   top: 50%;
   left: 50%;
+  /*translate() permet de déplacer un élément sur le plan représenté par le document.*/
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: space-around;
+  /*configuratin des dimensions pour les barre*/
   width: 20vh;
   height: 15vh;
 }
@@ -140,8 +164,8 @@ input[type=checkbox] {
   background: #e412c1;
 }
 
-/* LOADER */
-/* HEADER */
+/* -------------------fin LOADER------------------------------------- */
+/* --code HEADER ----------------------------------------------------- */
 .header {
   position: fixed;
   top: 0;
@@ -159,8 +183,8 @@ input[type=checkbox] {
   padding: 15px 0px 15px 0px;
 }
 
-/* HEADER */
-/* LOCATION */
+/* --fin code HEADER -----------------------------------------------------*/
+/* --  code LOCATION (barre de recherche) --------------------------------------- */
 .location_search {
   display: flex;
   justify-content: center;
@@ -179,6 +203,7 @@ input[type=checkbox] {
   height: 55px;
   width: 165px;
   font-size: 22px;
+  /*placeholder :Cela permet de personnaliser l'apparence de ce texte.*/
 }
 .location_search input::placeholder {
   opacity: 1;
@@ -197,8 +222,8 @@ i.fa-solid.location_icon {
   margin-left: 10px;
 }
 
-/* LOCATION */
-/* EXPLORER */
+/* -- fin code LOCATION (barre de recherche) ---------------------------------------*/
+/* --  code EXPLORER -------------------------------- */
 .explorer {
   background-size: cover;
   display: flex;
@@ -221,6 +246,7 @@ i.fa-solid.location_icon {
   font-size: 23px;
 }
 
+/*bouttan (commander)*/
 .btn_main {
   display: flex;
   justify-content: center;
@@ -232,12 +258,15 @@ i.fa-solid.location_icon {
   box-shadow: 2px 5px 20px rgb(167, 167, 167);
 }
 .btn_main:hover {
+  /*Application de la luminosité à l'aide de la propriété filter
+  Le CSS applique une valeur de multiplicateur linéaire sur un élément ou une image d'entrée, 
+  rendant l'image plus claire ou plus sombre.brightness()*/
   filter: brightness(1.1);
   box-shadow: 3px 6px 20px rgb(137, 137, 137);
 }
 
-/* EXPLORER */
-/* OPERATION */
+/* -- fin code EXPLORER -------------------------------- */
+/*--code OPERATION (Fonctionnement)-------------------------------------*/
 .operation {
   padding: 30px 15px;
 }
@@ -261,6 +290,7 @@ i.fa-solid.location_icon {
   border-radius: 30px;
   font-size: 16px;
   cursor: default;
+  /* property name | duration | easing function */
   transition: transform 250ms ease-in-out;
 }
 .operation_cards_card:hover {
@@ -290,8 +320,8 @@ i.fa-solid.location_icon {
   padding-right: 5px;
 }
 
-/* OPERATION */
-/* RESTAURANTS */
+/* --fin code OPERATION (Fonctionnement)-------------------------------------*/
+/*-- code RESTAURANTS ------------------------------------------------------*/
 .restaurants {
   background-color: #F2F2F2;
   margin-top: 40px;
@@ -338,6 +368,7 @@ i.fa-solid.location_icon {
   line-height: 10px;
 }
 .restaurants_icons {
+  /*position: absolute :pour superposer les icons lun sur lautr*/
   position: absolute;
   bottom: 1.9rem;
   right: 2.3rem;
@@ -350,6 +381,7 @@ i.fa-solid.location_icon {
   justify-content: flex-end;
   align-items: center;
   font-size: 25px;
+  /*pour le romplissage*/
 }
 .icons input[type=checkbox]:checked ~ .icons-liked {
   display: inline-block;
@@ -367,7 +399,11 @@ i.fa-solid.location_icon {
 .icons-liked {
   position: relative;
   background: linear-gradient(160deg, rgb(255, 121, 218) 0%, rgb(147, 86, 220) 100%);
+  /*La propriété CSS définit si l'arrière-plan d'un élément s'étend sous sa zone de bordure, 
+  sa zone de remplissage ou sa zone de contenu.background-clip*/
+  /*pour Firefox*/
   background-clip: text;
+  /*pour Chrome*/
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: opacity 500ms ease-in-out;
@@ -390,8 +426,8 @@ i.fa-solid.location_icon {
   background-color: #99E2D0;
 }
 
-/* RESTAURANTS */
-/* FOOTER */
+/* <!-- fin code RESTAURANTS ---------------------------------------------------------------> */
+/* --code FOOTER --------------------------------------------------*/
 .footer {
   background-color: #313131;
   padding: 30px 0px 30px 0px;
@@ -424,13 +460,9 @@ i.fa-solid.location_icon {
   margin-right: 10px;
 }
 
-/* FOOTER */
-/* PAGE */
-/* PAGES MENU */
-@font-face {
-  font-family: "Shrikhand";
-  src: url("font/Shrikhand/Shrikhand.ttf");
-}
+/* --fin code FOOTER -----------------------------------------------------*/
+/*fin code PAGE principal*/
+/* /*code des page menu------------------------------------------ */
 @keyframes itemAppear {
   from {
     transform: translateY(20px);
@@ -441,7 +473,7 @@ i.fa-solid.location_icon {
     opacity: 1;
   }
 }
-/* HEADER */
+/* --code HEADER ---------------------------------------*/
 .header_icon {
   position: relative;
   left: 20px;
@@ -452,16 +484,16 @@ i.fa-solid.location_icon {
   color: #99E2D0;
 }
 
-/* HEADER */
-/* BANNER */
+/* --fin code HEADER ---------------------------------------*/
+/*-- code BANNER (banderole image-restaurants)------------------*/
 .banner_img {
   object-fit: cover;
   width: 100%;
   height: 400px;
 }
 
-/* BANNER */
-/* MENU */
+/*-- code BANNER (banderole image-restaurants)----------------- */
+/*!--code MENU ----------------------------------------- */
 .menu {
   background-color: #F2F2F2;
   margin-top: -20px;
@@ -475,7 +507,7 @@ i.fa-solid.location_icon {
   margin-bottom: 20px;
 }
 .menu_header_title {
-  font-family: "Shrikhand";
+  font-family: "Shrikhand", serif;
   font-size: 33px;
   margin-right: 25px;
 }
@@ -615,8 +647,14 @@ i.fa-solid.location_icon {
   font-size: 20px;
 }
 
-/* MENU */
-/* PAGE MENU */
+/*--fin code MENU -----------------------------------------*/
+/* fin PAGE MENU */
+/* Vous pouvez créer des fichiers Sass partiels contenant de petits extraits de CSS que
+ vous pouvez inclure dans d'autres fichiers Sass. C'est un excellent moyen de modulariser
+  votre CSS et de faciliter la maintenance. Un partiel est un fichier Sass nommé avec un trait 
+  de soulignement en tête. Vous pourriez le nommer quelque chose comme _partial.scss. Le trait 
+  de soulignement indique à Sass que le fichier n'est qu'un fichier partiel et qu'il ne doit pas 
+  être généré dans un fichier CSS */
 @media screen and (min-width: 768px) and (max-width: 1100px) {
   .operation_cards {
     flex-direction: column;
@@ -649,6 +687,20 @@ i.fa-solid.location_icon {
     margin: 10px 0px;
   }
 }
+/* Vous pouvez créer des fichiers Sass partiels contenant de petits extraits de CSS que
+ vous pouvez inclure dans d'autres fichiers Sass. C'est un excellent moyen de modulariser
+  votre CSS et de faciliter la maintenance. Un partiel est un fichier Sass nommé avec un trait 
+  de soulignement en tête. Vous pourriez le nommer quelque chose comme _partial.scss. Le trait 
+  de soulignement indique à Sass que le fichier n'est qu'un fichier partiel et qu'il ne doit pas 
+  être généré dans un fichier CSS */
+/*definission : Une variable Sass est un conteneur pour une valeur. L’idée est de lier un nom à une valeur 
+puis d’utiliser ensuite ce nom à la place de la valeur dans le code. 
+Le nom utilisé sera ensuite converti automatiquement en la valeur à laquelle il est lié.
+ Cela permet une plus grande clarté dans le code et une bien meilleure maintenabilité 
+ puisque si on souhaite changer la valeur en question il suffit de la faire une fois à l’endroit où on l’a lié au nom.
+Les variables Sass sont très simple d’utilisation : 
+il suffit d’utiliser un signe $ (dollar) suivi d’un nom pour déclarer (c’est-à-dire créer) une variable
+ et d’affecter une valeur à ce nom en séparant le nom de la valeur par le signe : (deux-points).*/
 /*variables*****/
 /*Chaque itération à travers la boucle produira un nouveau sélecteur, 
 avec le numéro d'index de l'itération utilisé dans son nom, ainsi que pour multiplier le 
